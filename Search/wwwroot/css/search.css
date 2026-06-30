@@ -1,0 +1,141 @@
+﻿/* ======================================
+   Land Search System
+====================================== */
+
+body {
+    background: #f4f6f9;
+    font-family: "Khmer OS Battambang","Segoe UI",sans-serif;
+}
+
+/* Header */
+
+.display-1 {
+    font-size: 70px;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+/* Search Card */
+
+.card {
+    border-radius: 18px;
+    transition: .25s;
+}
+
+    .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+
+.card-header {
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 18px !important;
+    font-weight: bold;
+}
+
+/* Table */
+
+.table th {
+    width: 35%;
+    white-space: nowrap;
+    background: #f8f9fa;
+}
+
+.table td {
+    color: #333;
+    word-break: break-word;
+}
+
+/* Search Button */
+
+.btn-primary {
+    min-width: 140px;
+}
+
+/* Loading */
+
+#loading {
+    animation: fade .3s;
+}
+
+/* Result */
+
+#result {
+    animation: fade .4s;
+}
+
+/* Not Found */
+
+#notFound {
+    text-align: center;
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+/* Spinner */
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Animation */
+
+@keyframes fade {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile */
+
+@media(max-width:768px) {
+
+    .display-1 {
+        font-size: 48px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .input-group {
+        display: block;
+    }
+
+        .input-group .form-control {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+    .btn {
+        width: 100%;
+    }
+
+    .table th {
+        width: 40%;
+        font-size: 14px;
+    }
+
+    .table td {
+        font-size: 14px;
+    }
+}
+
+/* Footer */
+
+footer {
+    margin-top: 60px;
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}

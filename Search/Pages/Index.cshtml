@@ -1,0 +1,274 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "ប្រព័ន្ធស្វែងរកព័ត៌មានដី";
+}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h2 class="text-primary">ប្រព័ន្ធស្វែងរកព័ត៌មានដី</h2>
+        <p class="text-muted">Land Information Search System</p>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+
+        <div class="card-body">
+
+            <div class="row">
+
+                <div class="col-md-10">
+
+                    <input id="txtLandNo"
+                           class="form-control form-control-lg"
+                           placeholder="បញ្ចូលលេខក្បាលដី..." />
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button class="btn btn-primary btn-lg w-100"
+                            onclick="searchLand()">
+
+                        ស្វែងរក
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="loading"
+         class="text-center"
+         style="display:none">
+
+        <div class="spinner-border text-primary"></div>
+
+        <div class="mt-2">
+            កំពុងស្វែងរក...
+        </div>
+
+    </div>
+
+    <div id="notFound"
+         class="alert alert-warning"
+         style="display:none">
+
+        មិនមានទិន្នន័យ
+
+    </div>
+
+    <div id="result"
+         style="display:none">
+
+        <!-- ========================= -->
+
+        <div class="card mb-3">
+
+            <div class="card-header bg-primary text-white">
+
+                ព័ត៌មានទូទៅ
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="35%">លេខក្បាលដី</th>
+                        <td data-field="landNo"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ប្រភេទទ្រព្យ</th>
+                        <td data-field="propertyType"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ទំហំ</th>
+                        <td data-field="areaSqm"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ស្ថានភាពផ្លូវច្បាប់</th>
+                        <td data-field="legalStatus"></td>
+                    </tr>
+
+                    <tr>
+                        <th>លេខបណ្ណកម្មសិទ្ធិ</th>
+                        <td data-field="certificateNo"></td>
+                    </tr>
+
+                    <tr>
+                        <th>រូបភាពប្រើប្រាស់ដី</th>
+                        <td data-field="landUseImage"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ប្រភេទប្រើប្រាស់ដី</th>
+                        <td data-field="landUseType"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ដីមានទំនាស់</th>
+                        <td data-field="disputedLand"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ប្រភពកម្មសិទ្ធិ</th>
+                        <td data-field="ownershipSource"></td>
+                    </tr>
+
+                    <tr>
+                        <th>កាលបរិច្ឆេទកត់ត្រា</th>
+                        <td data-field="recordDate"></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+
+        <div class="card mb-3">
+
+            <div class="card-header bg-success text-white">
+
+                ព័ត៌មានប្តី
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <tr><th width="35%">ឈ្មោះ</th><td data-field="husbandName"></td></tr>
+
+                    <tr><th>ស្ថានភាពម្ចាស់</th><td data-field="husbandOwnerStatus"></td></tr>
+
+                    <tr><th>ថ្ងៃកំណើត</th><td data-field="husbandDob"></td></tr>
+
+                    <tr><th>សញ្ជាតិ</th><td data-field="husbandNationality"></td></tr>
+
+                    <tr><th>អត្តសញ្ញាណប័ណ្ណ</th><td data-field="husbandIdCard"></td></tr>
+
+                    <tr><th>ទីកន្លែងកំណើត</th><td data-field="husbandBirthPlace"></td></tr>
+                    
+                    <tr><th>ឪពុក</th><td data-field="husbandFatherName"></td></tr>
+
+                    <tr><th>ម្តាយ</th><td data-field="husbandMotherName"></td></tr>
+
+                    <tr><th>អាសយដ្ឋាន</th><td data-field="husbandAddress"></td></tr>
+
+                </table>
+
+            </div>
+
+        </div>
+        <!-- ========================= -->
+        <!-- Wife -->
+        <!-- ========================= -->
+
+        <div class="card mb-3">
+
+            <div class="card-header bg-danger text-white">
+
+                ព័ត៌មានប្រពន្ធ
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <tr><th width="35%">ឈ្មោះ</th><td data-field="wifeName"></td></tr>
+
+                    <tr><th>ស្ថានភាពម្ចាស់</th><td data-field="wifeOwnerStatus"></td></tr>
+
+                    <tr><th>ថ្ងៃកំណើត</th><td data-field="wifeDob"></td></tr>
+
+                    <tr><th>សញ្ជាតិ</th><td data-field="wifeNationality"></td></tr>
+
+                    <tr><th>អត្តសញ្ញាណប័ណ្ណ</th><td data-field="wifeIdCard"></td></tr>
+
+                    <tr><th>ទីកន្លែងកំណើត</th><td data-field="wifeBirthPlace"></td></tr>
+
+                    <tr><th>ឪពុក</th><td data-field="wifeFatherName"></td></tr>
+
+                    <tr><th>ម្តាយ</th><td data-field="wifeMotherName"></td></tr>
+
+                    <tr><th>អាសយដ្ឋាន</th><td data-field="wifeAddress"></td></tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+        <!-- ========================= -->
+        <!-- Organization -->
+        <!-- ========================= -->
+
+        <div id="organizationCard" class="card mb-3">
+
+            <div class="card-header bg-dark text-white">
+
+                ព័ត៌មានអង្គភាព
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <tr>
+                        <th width="35%">ប្រភេទនីតិបុគ្គល</th>
+                        <td data-field="legalEntityType"></td>
+                    </tr>
+
+                    <tr>
+                        <th>ឈ្មោះអង្គភាព</th>
+                        <td data-field="organizationName"></td>
+                    </tr>
+
+                    <tr>
+                        <th>អាសយដ្ឋាន</th>
+                        <td data-field="organizationAddress"></td>
+                    </tr>
+
+                    <tr>
+                        <th>អ្នកតំណាង</th>
+                        <td data-field="representativeName"></td>
+                    </tr>
+
+                    <tr>
+                        <th>អត្តសញ្ញាណប័ណ្ណ</th>
+                        <td data-field="representativeIdCard"></td>
+                    </tr>
+
+                    <tr>
+                        <th>តួនាទី</th>
+                        <td data-field="representativePosition"></td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts
+{
+    <script src="~/js/search.js" asp-append-version="true"></script>
+}
